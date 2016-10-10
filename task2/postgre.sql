@@ -1,35 +1,59 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+SET search_path = public, pg_catalog;
 
-
-CREATE TABLE IF NOT EXISTS `task2` (
-  `id`    INT(11) NOT NULL,
-  `Date`  DATETIME    DEFAULT NULL,
-  `Phone` VARCHAR(50) DEFAULT NULL,
-  `Name`  VARCHAR(50) DEFAULT NULL
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+CREATE SCHEMA public;
 
 
-INSERT INTO `task2` (`id`, `Date`, `Phone`, `Name`) VALUES
-  (1248, '2013-09-13 12:25:06', '89039773006', 'Катя'),
-  (2011, '2013-09-12 18:21:02', '89653734042', 'Коля'),
-  (2567, '2013-09-15 12:01:02', '89269620096', 'Сергей'),
-  (3092, '2013-09-13 11:21:02', '89112564242', 'Дмитрий'),
-  (5832, '2013-09-13 19:22:03', '89039773006', 'Катя'),
-  (7881, '2013-09-14 18:21:02', '89039773006', 'Екатерина'),
-  (8993, '2013-09-16 21:42:07', '89653734042', 'Николай');
+ALTER SCHEMA public OWNER TO postgres;
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
 
 
-ALTER TABLE `task2`
-ADD PRIMARY KEY (`id`);
+SET search_path = public, pg_catalog;
 
-/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+
+CREATE TABLE task2 (
+    id integer NOT NULL,
+    date timestamp(0) without time zone NOT NULL,
+    phone character varying(255) NOT NULL,
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE task2 OWNER TO wapclick;
+
+
+CREATE SEQUENCE task2_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE task2_id_seq OWNER TO wapclick;
+
+ALTER SEQUENCE task2_id_seq OWNED BY task2.id;
+
+INSERT INTO task2 VALUES (1248, '2013-09-13 12:25:06', '89039773006', 'Катя');
+INSERT INTO task2 VALUES (2011, '2013-09-12 18:21:02', '89653734042', 'Коля');
+INSERT INTO task2 VALUES (2567, '2013-09-15 12:01:02', '89269620096', 'Сергей');
+INSERT INTO task2 VALUES (3092, '2013-09-13 11:21:02', '89112564242', 'Дмитрий');
+INSERT INTO task2 VALUES (5832, '2013-09-13 19:22:03', '89039773006', 'Катя');
+INSERT INTO task2 VALUES (7881, '2013-09-14 18:21:02', '89039773006', 'Екатерина');
+INSERT INTO task2 VALUES (8993, '2013-09-16 21:42:07', '89653734042', 'Николай');
+

@@ -1,43 +1,62 @@
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+SET search_path = public, pg_catalog;
 
-
-CREATE TABLE IF NOT EXISTS `task1` (
-  `id`    INT(11) NOT NULL,
-  `Phone` VARCHAR(50) DEFAULT NULL
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 15;
-
-INSERT INTO `task1` (`id`, `Phone`) VALUES
-  (1, '8(915)234 23-12'),
-  (2, '7 926111 2345'),
-  (3, '9039772525'),
-  (4, '90392713151'),
-  (5, 'Телефонный номер89152025598'),
-  (6, 'тел: 96132141223'),
-  (7, '+7(495)202-15-16'),
-  (8, '84952921516'),
-  (9, '8-926-111-23-45'),
-  (10, '8112564302'),
-  (11, '84952021516'),
-  (12, ''),
-  (13, '375296863801'),
-  (14, '+380967231126');
+CREATE SCHEMA public;
 
 
-ALTER TABLE `task1`
-ADD PRIMARY KEY (`id`);
+ALTER SCHEMA public OWNER TO postgres;
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
 
 
-ALTER TABLE `task1`
-MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 15;
-/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+CREATE TABLE task1 (
+    id integer NOT NULL,
+    phone character varying(255) NOT NULL
+);
+
+
+ALTER TABLE task1 OWNER TO wapclick;
+
+
+CREATE SEQUENCE task1_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE task1_id_seq OWNER TO wapclick;
+
+ALTER SEQUENCE task1_id_seq OWNED BY task1.id;
+
+INSERT INTO task1 VALUES (1, '8(915)234 23-12');
+INSERT INTO task1 VALUES (2, '7 926111 2345');
+INSERT INTO task1 VALUES (3, '9039772525');
+INSERT INTO task1 VALUES (4, '90392713151');
+INSERT INTO task1 VALUES (5, 'Телефонный номер89152025598');
+INSERT INTO task1 VALUES (6, 'тел: 96132141223');
+INSERT INTO task1 VALUES (7, '+7(495)202-15-16');
+INSERT INTO task1 VALUES (8, '84952921516');
+INSERT INTO task1 VALUES (9, '8-926-111-23-45');
+INSERT INTO task1 VALUES (10, '8112564302');
+INSERT INTO task1 VALUES (11, '84952021516');
+INSERT INTO task1 VALUES (12, '');
+INSERT INTO task1 VALUES (13, '375296863801');
+INSERT INTO task1 VALUES (14, '+380967231126');
